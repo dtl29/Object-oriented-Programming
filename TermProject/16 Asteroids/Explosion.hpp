@@ -11,20 +11,16 @@ public:
     name = Explosion;
     if(type == 1)
     {
-      t7.loadFromFile("images/explosions/type_B.png");
-      sExplosion = Animation(t7, 0,0,192,192, 64, 0.5);
-      settings(sExplosion,x,y);
+      tex.loadFromFile("images/explosions/type_B.png");
+      anim = Animation(tex, 0,0,192,192, 64, 0.5);
+      settings(anim,x,y);
     }
     else
     {
-      t3.loadFromFile("images/explosions/type_C.png");
-      sExplosion = Animation (t3, 0,0,256,256, 48, 0.5);
-      settings(sExplosion,x,y);
+      tex.loadFromFile("images/explosions/type_C.png");
+      anim = Animation (tex, 0,0,256,256, 48, 0.5);
+      settings(anim,x,y);
     }
   }
 private:
-  Texture t7;
-  Texture t3;
-  Animation sExplosion;
-
 };

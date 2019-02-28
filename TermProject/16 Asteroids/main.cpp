@@ -33,14 +33,12 @@ int main()
     RenderWindow app(VideoMode(W, H), "Asteroids!");
     app.setFramerateLimit(60);
 
-    Texture t1, t2, t4, t5, t6;
-    t1.loadFromFile("./images/spaceship.png");
+    Texture  t2, t4, t5, t6;
     t2.loadFromFile("./images/background.jpg");
     t4.loadFromFile("images/rock.png");
     t5.loadFromFile("images/fire_blue.png");
     t6.loadFromFile("images/rock_small.png");
 
-    t1.setSmooth(true);
     t2.setSmooth(true);
 
     Sprite background(t2);
@@ -48,8 +46,6 @@ int main()
     Animation sRock(t4, 0,0,64,64, 16, 0.2);
     Animation sRock_small(t6, 0,0,64,64, 16, 0.2);
     Animation sBullet(t5, 0,0,32,64, 16, 0.8);
-    Animation sPlayer(t1, 40,0,40,40, 1, 0);
-    Animation sPlayer_go(t1, 40,40,40,40, 1, 0);
 
     //entities in game are held here as pointers
     std::list<Entity*> entities;
@@ -63,7 +59,7 @@ int main()
     }
 
     player *p = new player();
-    p->settings(sPlayer,200,200,0,20);
+    //p->settings(sPlayer,200,200,0,20);
     entities.push_back(p);
 
     /////main loop/////
@@ -101,11 +97,6 @@ int main()
             b->life=false;
 
             //create entity exposiln
-            /*Move to own class */
-            /*
-            Entity *e = new Entity();
-            e->settings(sExplosion,a->x,a->y);
-            e->name=Explosion;*/
             entities.push_back(new explosion(a->x , a->y , 2));
 
 
@@ -126,14 +117,13 @@ int main()
 
             entities.push_back(new explosion(a->x , a->y, 1));
 
-            p->settings(sPlayer,W/2,H/2,0,20);
-            p->dx=0; p->dy=0;
+            p->respawn();
            }
     }
 
     //controls animation of theship
-    if (p->thrust)  p->anim = sPlayer_go;
-    else   p->anim = sPlayer;
+    if (p->thrust)  p->set_Anim_Go();
+    else   p->set_Anim_Normal();
 
 
     for(auto e:entities)

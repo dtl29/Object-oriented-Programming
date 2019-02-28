@@ -17,6 +17,11 @@ public:
   //std::string name;
   Entities name;
   Animation anim;
+  Texture tex;
+
+   	const int W = 1200;
+	const int H = 800;
+	float DEGTORAD = 0.017453f;
 
   Entity()
   {

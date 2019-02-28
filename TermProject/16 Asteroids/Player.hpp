@@ -10,8 +10,18 @@ public:
    player()
    {
       name = Player;
+      tex.loadFromFile("./images/spaceship.png");
+      tex.setSmooth(true);
+      normal = Animation(tex, 40,0,40,40, 1, 0);
+      go = Animation (tex, 40,40,40,40, 1, 0);
+      anim = normal;
+      settings(anim,200,200,0,20);
    }
-
+   void respawn()
+   {
+   		settings(anim,W/2,H/2,0,20);
+   		 dx=0; dy=0;
+   }
    void update()
    {
      if (thrust)
@@ -33,8 +43,8 @@ public:
     if (x>W) x=0; if (x<0) x=W;
     if (y>H) y=0; if (y<0) y=H;
    }
+   void set_Anim_Normal() {anim = normal; return;}
+   void set_Anim_Go() {anim = go; return;}
  private:
- 	const int W = 1200;
-	const int H = 800;
-	float DEGTORAD = 0.017453f;
+ 	Animation go, normal;
 };

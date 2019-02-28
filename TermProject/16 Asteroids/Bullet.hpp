@@ -22,7 +22,4 @@ public:
    if (x>W || x<0 || y>H || y<0) life=0;
   }
 private:
-	const int W = 1200;
-	const int H = 800;
-	float DEGTORAD = 0.017453f;
 };

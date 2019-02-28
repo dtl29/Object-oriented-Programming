@@ -22,7 +22,4 @@ public:
    if (y>H) y=0;  if (y<0) y=H;
   }
 private:
-  const int W = 1200;
-  const int H = 800;
-
 };
