@@ -1,14 +1,17 @@
 #pragma once
 #include "Entity.hpp"
+#include "Animation.hpp"
 
 //derived class from entity
 class bullet: public Entity
 {
 public:
-  bullet()
+  bullet(float x, float y, float angle)
   {
-    //name="bullet";
     name = Bullet;
+    tex.loadFromFile("images/fire_blue.png");
+    anim = Animation(tex, 0,0,32,64, 16, 0.8);
+    settings(anim, x, y, angle, 10);
   }
 
   void  update()

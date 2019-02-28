@@ -1,5 +1,6 @@
 #pragma once
 
+
 enum Entities
 {
   Player,
@@ -48,7 +49,7 @@ public:
     circle.setFillColor(Color(255,0,0,170));
     circle.setPosition(x,y);
     circle.setOrigin(R,R);
-    app.draw(circle);
+    //app.draw(circle);
   }
 
   virtual ~Entity(){};

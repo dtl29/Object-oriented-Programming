@@ -1,5 +1,6 @@
 #pragma once
 #include "Entity.hpp"
+#include "Animation.hpp"
 
 //derived class of entity
 class player: public Entity

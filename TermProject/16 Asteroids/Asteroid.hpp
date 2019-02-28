@@ -1,16 +1,34 @@
 #pragma once
 #include "Entity.hpp"
+#include "Animation.hpp"
+enum TypeOfA
+{
+  Small, 
+  Large,
+};
 
 //derived class of entity
 class asteroid: public Entity
 {
 public:
-  asteroid()
+  asteroid(float x, float y, TypeOfA type )
   {
     dx=rand()%8-4;
     dy=rand()%8-4;
     //name="asteroid";
     name = Asteroid;
+    if(type == Large)
+    {
+      tex.loadFromFile("images/rock.png");
+      anim = Animation(tex, 0,0,64,64, 16, 0.2);
+      settings(anim, x, y, rand()%360, 25);
+    }
+    else
+    {
+      tex.loadFromFile("images/rock_small.png");
+      anim = Animation(tex, 0,0,64,64, 16, 0.2);
+      settings(anim, x, y, rand()%360, 15);
+    }
   }
 
   void  update()

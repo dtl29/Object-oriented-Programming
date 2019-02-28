@@ -1,4 +1,5 @@
 #pragma once
+#include <SFML/Graphics.hpp>
 
 //controls the frame for the animation
 class Animation
@@ -38,3 +39,29 @@ public:
 	}
 
 };
+
+
+Texture t1,t2,t3,t4,t5,t6,t7;
+void start()
+{
+	t1.loadFromFile("images/spaceship.png");
+	t2.loadFromFile("images/background.jpg");
+	t3.loadFromFile("images/explosions/type_C.png");
+	t4.loadFromFile("images/rock.png");
+	t5.loadFromFile("images/fire_blue.png");
+	t6.loadFromFile("images/rock_small.png");
+	t7.loadFromFile("images/explosions/type_B.png");
+
+	t1.setSmooth(true);
+	t2.setSmooth(true);
+
+	Sprite background(t2);
+}
+
+Animation sExplosion(t3, 0,0,256,256, 48, 0.5);
+Animation sRock(t4, 0,0,64,64, 16, 0.2);
+Animation sRock_small(t6, 0,0,64,64, 16, 0.2);
+Animation sBullet(t5, 0,0,32,64, 16, 0.8);
+Animation sPlayer(t1, 40,0,40,40, 1, 0);
+Animation sPlayer_go(t1, 40,40,40,40, 1, 0);
+Animation sExplosion_ship(t7, 0,0,192,192, 64, 0.5);
