@@ -9,6 +9,7 @@ using namespace sf;
 #include "Asteroid.hpp"
 #include "Player.hpp"
 #include "Bullet.hpp"
+#include "Explosion.hpp"
 
 //global variables
 const int W = 1200;
@@ -16,25 +17,7 @@ const int H = 800;
 
 float DEGTORAD = 0.017453f;
 
-class explosion : public Entity
-{
-public:
-  Texture t7;
-  Animation sExplosion_ship;
-  //creator for explosions
-  explosion(float x,float y)
-  {
-    name = Explosion;
-    t7.loadFromFile("images/explosions/type_B.png");
-    sExplosion_ship = Animation(t7, 0,0,192,192, 64, 0.5);
-    settings(sExplosion_ship,x,y);
-  }
-  //virtual ~Explosion(){}
-//checks if the entities have collided 
-//private:
-
-};
-
+//check if something has collided
 bool isCollide(Entity *a,Entity *b)
 {
   return (b->x - a->x)*(b->x - a->x)+
@@ -50,31 +33,28 @@ int main()
     RenderWindow app(VideoMode(W, H), "Asteroids!");
     app.setFramerateLimit(60);
 
-    Texture t1,t2,t3,t4,t5,t6,t7;
+    Texture t1, t2, t4, t5, t6;
     t1.loadFromFile("./images/spaceship.png");
     t2.loadFromFile("./images/background.jpg");
-    t3.loadFromFile("images/explosions/type_C.png");
     t4.loadFromFile("images/rock.png");
     t5.loadFromFile("images/fire_blue.png");
     t6.loadFromFile("images/rock_small.png");
-    t7.loadFromFile("images/explosions/type_B.png");
 
     t1.setSmooth(true);
     t2.setSmooth(true);
 
     Sprite background(t2);
 
-    Animation sExplosion(t3, 0,0,256,256, 48, 0.5);
     Animation sRock(t4, 0,0,64,64, 16, 0.2);
     Animation sRock_small(t6, 0,0,64,64, 16, 0.2);
     Animation sBullet(t5, 0,0,32,64, 16, 0.8);
     Animation sPlayer(t1, 40,0,40,40, 1, 0);
     Animation sPlayer_go(t1, 40,40,40,40, 1, 0);
-    Animation sExplosion_ship(t7, 0,0,192,192, 64, 0.5);
 
-
+    //entities in game are held here as pointers
     std::list<Entity*> entities;
 
+    //creation of 15 asteroids
     for(int i=0;i<15;i++)
     {
       asteroid *a = new asteroid();
@@ -122,10 +102,11 @@ int main()
 
             //create entity exposiln
             /*Move to own class */
+            /*
             Entity *e = new Entity();
             e->settings(sExplosion,a->x,a->y);
-            e->name=Explosion;
-            entities.push_back(e);
+            e->name=Explosion;*/
+            entities.push_back(new explosion(a->x , a->y , 2));
 
 
             for(int i=0;i<2;i++)
@@ -143,14 +124,7 @@ int main()
            {
             b->life=false;
 
-            //create explosion again 
-            /*same as before move to own class*/
-            /*
-            Entity *e = new Entity();
-            e->settings(sExplosion_ship,a->x,a->y);
-            e->name=Explosion;
-            */
-            entities.push_back(explosion(a->x , a->y));
+            entities.push_back(new explosion(a->x , a->y, 1));
 
             p->settings(sPlayer,W/2,H/2,0,20);
             p->dx=0; p->dy=0;
