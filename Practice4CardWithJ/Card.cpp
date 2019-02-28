@@ -75,7 +75,7 @@ bool operator==(CardSlow a, CardSlow b)
 }
 bool operator==(CardSlow a, Card b)
 {
-	if(a.is_StandardCard() && !(b.is_StandardCard()) \
+	if(a.is_StandardCard() && !(b.is_StandardCard()) 
 		|| !(a.is_StandardCard() && b.is_StandardCard()))
 	{
 		return false;
@@ -94,7 +94,7 @@ bool operator==(CardSlow a, Card b)
 }
 bool operator==(Card a, CardSlow b)
 {
-	if(a.is_StandardCard() && !(b.is_StandardCard()) \
+	if(a.is_StandardCard() && !(b.is_StandardCard()) 
 		|| !(a.is_StandardCard() && b.is_StandardCard()))
 	{
 		return false;
