@@ -1,4 +1,5 @@
 #pragma once
+#include "Animation.hpp"
 
 
 enum Entities
@@ -7,6 +8,7 @@ enum Entities
   Asteroid,
   Bullet,
   Explosion,
+  PowerUp,
 };
 
 //base class for the objects of the game

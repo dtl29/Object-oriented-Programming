@@ -1,6 +1,5 @@
 #pragma once
 #include "Entity.hpp"
-#include "Animation.hpp"
 enum TypeOfA
 {
   Small, 

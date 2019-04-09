@@ -27,7 +27,7 @@ public:
 
 	void update()
 	{
-    Frame += speed;
+   		Frame += speed;
 		int n = frames.size();
 		if (Frame >= n) Frame -= n;
 		if (n>0) sprite.setTextureRect( frames[int(Frame)] );
@@ -40,28 +40,43 @@ public:
 
 };
 
+struct animationContainer{
+	Texture t1,t2,t3,t4,t5,t6,t7,t8,t9;
+	Animation sExplosion;
+	Animation sRock;
+	Animation sRock_small;
+	Animation sBullet;
+	Animation sPlayer;
+	Animation sPlayer_go;
+	Animation sExplosion_ship;
+	Animation pwrup;
+	Sprite background;
+	Sprite live;
+	animationContainer()
+	{
+		 t1.loadFromFile("images/spaceship.png");
+		 t2.loadFromFile("images/background.jpg");
+		 t3.loadFromFile("images/explosions/type_C.png");
+		 t4.loadFromFile("images/rock.png");
+		 t5.loadFromFile("images/fire_blue.png");
+		 t6.loadFromFile("images/rock_small.png");
+		 t7.loadFromFile("images/explosions/type_B.png");
+		 t8.loadFromFile("images/power_up.png");
+		 t9.loadFromFile("images/lives.png");
+		
+		t1.setSmooth(true);
+		t2.setSmooth(true);
 
-Texture t1,t2,t3,t4,t5,t6,t7;
-void start()
-{
-	t1.loadFromFile("images/spaceship.png");
-	t2.loadFromFile("images/background.jpg");
-	t3.loadFromFile("images/explosions/type_C.png");
-	t4.loadFromFile("images/rock.png");
-	t5.loadFromFile("images/fire_blue.png");
-	t6.loadFromFile("images/rock_small.png");
-	t7.loadFromFile("images/explosions/type_B.png");
+		background = *(new Sprite(t2));
+		live = *(new Sprite(t9));
 
-	t1.setSmooth(true);
-	t2.setSmooth(true);
-
-	Sprite background(t2);
-}
-
-Animation sExplosion(t3, 0,0,256,256, 48, 0.5);
-Animation sRock(t4, 0,0,64,64, 16, 0.2);
-Animation sRock_small(t6, 0,0,64,64, 16, 0.2);
-Animation sBullet(t5, 0,0,32,64, 16, 0.8);
-Animation sPlayer(t1, 40,0,40,40, 1, 0);
-Animation sPlayer_go(t1, 40,40,40,40, 1, 0);
-Animation sExplosion_ship(t7, 0,0,192,192, 64, 0.5);
+		 sExplosion = Animation(t3, 0,0,256,256, 48, 0.5);
+		 sRock = Animation(t4, 0,0,64,64, 16, 0.2);
+		 sRock_small = Animation(t6, 0,0,64,64, 16, 0.2);
+		 sBullet = Animation(t5, 0,0,32,64, 16, 0.8);
+		 sPlayer = Animation(t1, 40,0,40,40, 1, 0);
+		 sPlayer_go = Animation(t1, 40,40,40,40, 1, 0);
+		 sExplosion_ship = Animation(t7, 0,0,192,192, 64, 0.5);
+		 pwrup = Animation(t8,0,0,64,64,16,0.2);
+	}
+};
