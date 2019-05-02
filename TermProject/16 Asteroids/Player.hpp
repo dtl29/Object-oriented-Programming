@@ -18,6 +18,7 @@ public:
       go = Animation (tex, 40,40,40,40, 1, 0);
       anim = normal;
       settings(anim,W/2,H/2,0,20);
+      thrust = false;
    }
    void respawn()
    {
