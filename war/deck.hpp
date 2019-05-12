@@ -9,6 +9,7 @@ oop
 #include <algorithm>
 #include <ctime>
 
+//this enum is a represtnation of set of suits within the deck
 enum Suit 
 {
     Hearts,
@@ -17,6 +18,7 @@ enum Suit
     Dimaonds,
 };
 
+//this enum is a represnation of the set of ranks that a card can poses in a deck
 enum Rank
 {
 	Ace,
@@ -34,11 +36,15 @@ enum Rank
 	King,
 };
 
+/*
+struct for the represntation of a normal card with a suit and a rank to represnt the card
+*/
 struct Card
 {
 	Suit suit;
 	Rank rank;
 };
+
 /*
 struct for the deck to be split in half between the players
 */
@@ -50,7 +56,10 @@ struct Deck
  	void shuffle(std::vector<Card> &theDeck);
 };
 
-//Deck constrictor 
+/*
+Deck constrictor
+*this will initilize the deck with all 52 cards that have the coresponding suit and rank 
+*/
 Deck::Deck()
 {
 	Card card;
@@ -66,7 +75,12 @@ Deck::Deck()
 
 	shuffle(theDeck);
 }
-//suffles the deck
+
+/*
+shuffle 
+*is a member function of deck 
+*funtion that suffles the deck
+*/
 void Deck::shuffle(std::vector<Card> &theDeck)
 {
 	std::srand(std::time(0));
